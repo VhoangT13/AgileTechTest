@@ -1,0 +1,10 @@
+.slider {
+  display: flex;
+  justify-content: space-evenly;
+}
+.btn {
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

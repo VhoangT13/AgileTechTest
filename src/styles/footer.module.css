@@ -1,0 +1,139 @@
+.divider {
+  width: 1600px;
+  height: 2px;
+  opacity: 0.20000000298023224;
+  background: #9c69e2;
+  margin: 0 auto 107px;
+}
+.container {
+  max-width: 1120px;
+  margin: 0 auto 93px;
+  display: flex;
+}
+
+.container ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  width: 166.446px;
+  margin-right: 50px;
+}
+.info {
+  width: 335.9px;
+  margin-right: 140px;
+}
+.name {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  color: #212353;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 160%; /* 32px */
+  margin-bottom: 67px;
+}
+.text {
+  color: #212353;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 180%; /* 28.8px */
+  letter-spacing: 0.16px;
+  margin-bottom: 10px;
+}
+
+.contact {
+  color: #212353;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 28.8px */
+  letter-spacing: 0.16px;
+}
+
+h3 {
+  color: #212353;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 160%; /* 25.6px */
+  margin-bottom: 30px;
+}
+.col li {
+  color: #212353;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 250%; /* 40px */
+}
+
+.col li a {
+  text-decoration: none;
+  color: inherit;
+}
+.group {
+  max-width: 178px;
+  display: flex;
+  gap: 14px;
+}
+.copyright {
+  max-width: 1120px;
+  margin: 0 auto 130px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.copyright p {
+  width: 360.967px;
+  color: #212353;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 21.6px */
+  letter-spacing: 0.12px;
+}
+
+@media (max-width: 1120px) {
+  .divider {
+    width: 1200px;
+  }
+  .container {
+    padding: 0 30px;
+  }
+  .info {
+    margin-right: 120px;
+  }
+  .container ul {
+    margin-right: 30px;
+    width: 130.446px;
+  }
+  .copyright {
+    padding: 0 30px;
+  }
+}
+@media (max-width: 944px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 60px;
+  }
+  .col {
+    grid-row-start: 2;
+  }
+}
+@media (max-width: 768px) {
+  .info {
+    width: 280px;
+  }
+  .group {
+    gap: 8px;
+  }
+}
+@media (max-width: 640px) {
+  .info {
+    width: 260px;
+    margin-right: 60px;
+  }
+}
