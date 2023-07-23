@@ -19,30 +19,30 @@ const ProfilePage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   // getPost
-  useEffect(() => {
-    const fetchPost = async (page, title, tags) => {
-      try {
-        let url = `https://test-react.agiletech.vn/posts?page=${page}`;
-        if (title) url += `&title=${title}`;
-        if (tags) url += `&tags=${tags}`;
-        const response = await fetch(url, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setPosts(data.posts);
-          setTotalPages(data["total_page"]);
-        } else {
-          console.error("Error fetching posts:", response.status);
-          // If the API call fails due to an invalid token, log the user out
-          logout();
-        }
-      } catch (e) {
-        console.error("Error fetching posts:", e);
+  const fetchPost = async (page, title, tags) => {
+    try {
+      let url = `https://test-react.agiletech.vn/posts?page=${page}`;
+      if (title) url += `&title=${title}`;
+      if (tags) url += `&tags=${tags}`;
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setPosts(data.posts);
+        setTotalPages(data["total_page"]);
+      } else {
+        console.error("Error fetching posts:", response.status);
+        // If the API call fails due to an invalid token, log the user out
+        logout();
       }
-    };
+    } catch (e) {
+      console.error("Error fetching posts:", e);
+    }
+  };
+  useEffect(() => {
     fetchPost(currentPage, title, selectedTag);
   }, [title, currentPage, selectedTag, accessToken, logout]);
   // get Tags
@@ -96,13 +96,35 @@ const ProfilePage = () => {
 
       if (response.ok) {
         // Update the posts after successful deletion
-        const updatedPosts = posts.filter((post) => post.id !== postId);
-        setPosts(updatedPosts);
+        fetchPost(currentPage);
       } else {
         console.error("Error deleting post:", response.status);
       }
     } catch (error) {
       console.error("Error deleting post:", error);
+    }
+  };
+
+  const handleAddPost = async (postData) => {
+    try {
+      const response = await fetch("https://test-react.agiletech.vn/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(postData), // Use the provided data from the Form component
+      });
+
+      if (response.ok) {
+        // Fetch the updated posts for the current page after adding the post
+        fetchPost(currentPage);
+        setModalOpen(false);
+      } else {
+        console.error("Error adding post:", response.status);
+      }
+    } catch (error) {
+      console.error("Error adding post:", error);
     }
   };
 
@@ -122,6 +144,7 @@ const ProfilePage = () => {
             isOpen={isModalOpen}
             onClose={() => setModalOpen(false)}
             tags={tags}
+            onSubmit={handleAddPost}
           />
           <div>
             <input

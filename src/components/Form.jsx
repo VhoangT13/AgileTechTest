@@ -3,10 +3,18 @@ import styles from "../styles/form.module.css";
 const Form = ({ isOpen, onClose, onSubmit, tags }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit();
+    const postData = {
+      title: title,
+      description: description,
+      tags: [selectedTags],
+    };
+    onSubmit(postData);
+    setDescription("");
+    setTitle("");
+    setSelectedTags("");
   };
   // Handle changes in the tags select
 

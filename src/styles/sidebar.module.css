@@ -7,6 +7,8 @@
 .logo {
   margin-left: 70px;
   margin-bottom: 40px;
+  cursor: pointer;
+  display: inline-block;
 }
 .link {
   display: flex;
